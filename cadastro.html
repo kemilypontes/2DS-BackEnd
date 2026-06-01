@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back-End</title>
+    <script>
+        function pesquisarCep(){
+            const cep = document.getElementById("cep").value
+
+
+            const validacep = /^[0-9]{8}$/
+            if(validacep.test(cep)){
+            const link = "https://viacep.com.br/ws/" + cep + "/json/?callback=preencherEndereco"
+            var script = document.createElement("script")
+            script.src = link
+            document.body.appendChild(script)
+
+            }else{
+                reposta.textContent = "O CEP foi igitado fora o padrão aceito"
+            }
+
+
+            const link = "https://viacep.com.br/ws/" + cep + "/json/?callback=preencherEndereco"
+            var script = document.createElement("script")
+            script.src = link
+            document.body.appendChild(script)
+        }
+        function preencherEndereco(conteudo){
+            if ("erro" in conteudo){
+                resposta.textContent + " O CEP digitao está incorreto"
+            document.getElementById("cep").value = ""
+        }else{
+            resposta.textContent = JSON.stringify(conteudo)
+        }
+        }
+
+    </script>
+
+    <style>
+        body {
+            background-color: #6a1b9a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <label>CEP:</label>
+    <input type="text" id="cep">
+    <button onclick="pesquisarCep()">Enviar</button>
+    <p id="resposta"></p>
+</body>
+</html>
