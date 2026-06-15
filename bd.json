@@ -1,0 +1,23 @@
+[
+    {
+        "nome": "fulano",
+        "data_nasc": "15/08/2010",
+        "cpf": 12345678900,
+        "email": "fulano@gmail.com",
+        "senha": "fu123"
+    },
+    {
+        "nome": "ciclano",
+        "data_nasc": "14/08/2010",
+        "cpf": 12345678901,
+        "email": "ciclano@gmail.com",
+        "senha": "ci123"
+    },
+    {
+        "nome": "beltrano",
+        "data_nasc": "13/08/2010",
+        "cpf": 12345678902,
+        "email": "beltrano@gmail.com",
+        "senha": "be123"
+    }
+]
