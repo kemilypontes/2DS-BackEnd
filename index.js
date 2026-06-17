@@ -1,6 +1,6 @@
-// npm init 
+// npm init
 // npm i express
-// instalar extensão RaoiAPI Client no VScode
+// instalar extensão RapidAPI Client no VSCode
 const express = require("express")
 const app = express()
 const port = 3000
@@ -9,26 +9,32 @@ const fs = require('fs')
 
 app.post("/clientes", (req, res) => {
     const cliente = req.body
-    // abrir o arquivo
-    try{
-        const bd =  JSON.parse(fs.readFileSync("bd.json", "utf8"))
-        //adcionar o cliente
+    try {
+        // abrir o arquivo
+        const bd = JSON.parse(fs.readFileSync("bd.json", "utf8"))
+        // adicionar o cliente
         bd.push(cliente)
         // salvar o arquivo
-        fs.writeFileSync("bd.json" , JSON.stringify(bd), "utf8")
-        //resposta
+        fs.writeFileSync("bd.json", JSON.stringify(bd), "utf8")
+        // resposta
         res.status(201).json({resposta: "Cliente cadastrado!"})
     } catch (erro) {
         res.status(500).json({erro: erro.message})
-
     }
-    
 })
 
-app.get("/ola", (req, res) => {
-    res.json({responta: "Olá Mundo!"})
+app.get("/clientes", (req, res) => {
+    try{
+        // abrir arquivo 
+        const bd =  JSON.parse(fs.readFileSync("bd.json", "utf8"))
+        res.status(200).json({resposta: bd})
+    } catch (erro)  {
+        res.status(500).json({erro: erro.message})
+    }
 })
 
 app.listen(port, ()=>{
     console.log("API rodando na porta" + port)
 })
+
+// GET http//loacalhost:3000/clientes
