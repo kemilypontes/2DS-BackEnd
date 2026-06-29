@@ -44,6 +44,8 @@ app.delete("/clientes/:cpf", (req, res) => {
             return res.status(484).json({erro: "O cliente não existe"})
         }
         bd.splice(indiceClientes, 1)
+        //atualizar o arquivo 
+        fs.writeFileSync("bd.json", JSON.stringify(bd), "utf8")
         //dar uma resposta para o cliente
         res.status(200).json({resposta:"Cliente excluido com sucesso"})
     }catch (error){
@@ -55,4 +57,4 @@ app.listen(port, ()=>{
     console.log("API rodando na porta" + port)
 })
 
-// GET http://localhost:3000/clientes
+// GET http://localhost:3000/clientesrapid
